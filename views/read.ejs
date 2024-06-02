@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <main class="h-screen w-full bg-zinc-900">
+        <a class="text-md font-semibold text-blue-500 px-10 py-5 block decoration-none tracking-tight" href="/">Go Back to create New User</a>
+        <div class="cards flex gap-4 flex-wrap items-start p-10">
+            <% if(users.length > 0){ %>
+                <% users.forEach((user)=>{ %>
+                    <div class="card w-72 bg-zinc-800 p-3 rounded-md">
+                        <div class="image w-full h-52 bg-zinc-600 rounded-md overflow-hidden">
+                            <img class="h-full w-full object-cover" src="<%= user.image %>" alt="">
+                        </div>
+                        <div class="details h-[30%] text-white mt-3">
+                            <h3 class="text-lg font-semibold tracking-tighter"><%= user.name %></h3>
+                            <p class="text-sm text-zinc-500"><%= user.email %></p>
+                        </div>
+                        <div class="btns flex justify-between mt-4">
+                            <a href="/edit/<%= user._id %>" class="text-sm font-semibold text-blue-400">Edit User</a>
+                            <a href="/delete/<%= user._id %>" class="text-sm font-semibold text-red-500">Delete User</a>
+                        </div>
+                    </div>
+            <% }) %>
+            <% } else { %>
+                <h3 class="text-zinc-500 tracking-tighter font-semibold">No Users found!!</h3>
+            <% } %>
+        </div>
+    </main>
+</body>
+</html>
